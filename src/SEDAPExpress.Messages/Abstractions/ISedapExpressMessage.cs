@@ -13,17 +13,17 @@ public interface ISedapExpressMessage
     /// <summary>
     /// Message number.
     /// </summary>
-    public byte Number { get; }
+    public byte? Number { get; }
 
     /// <summary>
     /// Message timestamp.
     /// </summary>
-    public long Time { get; }
+    public long? Time { get; }
 
     /// <summary>
     /// Message sender.
     /// </summary>
-    public string Sender { get; }
+    public string? Sender { get; }
 
     /// <summary>
     /// Classification of the message.
@@ -31,7 +31,12 @@ public interface ISedapExpressMessage
     public Classification Classification { get; }
 
     /// <summary>
+    /// Expresses if the sender expects acknowledgment.
+    /// </summary>
+    public Acknowledgement Acknowledgement { get; }
+
+    /// <summary>
     /// Sender's MAC address.
     /// </summary>
-    public string Mac { get; }
+    public string? Mac { get; }
 }

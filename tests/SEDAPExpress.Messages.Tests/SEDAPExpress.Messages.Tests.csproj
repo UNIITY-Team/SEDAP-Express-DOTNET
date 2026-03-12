@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../src/SEDAPExpress.Messages/SEDAPExpress.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="FakeItEasy" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
