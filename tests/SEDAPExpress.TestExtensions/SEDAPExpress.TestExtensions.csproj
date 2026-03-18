@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
+    <RootNamespace>Bundeswehr.Uniity.SEDAPExpress.TestExtensions</RootNamespace>
+  </PropertyGroup>
+</Project>

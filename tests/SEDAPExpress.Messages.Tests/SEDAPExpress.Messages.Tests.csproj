@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/SEDAPExpress.Messages/SEDAPExpress.Messages.csproj" />
+    <ProjectReference Include="../../tests/SEDAPExpress.TestExtensions/SEDAPExpress.TestExtensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

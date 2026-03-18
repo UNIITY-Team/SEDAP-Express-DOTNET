@@ -1838,7 +1838,6 @@ public sealed class MessageSerializer : IMessageSerializer
     // Shared utilities
     // -------------------------------------------------------------------------
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("", "CA1859", Justification = "Will be used for other message types in the future.")]
     private static StringBuilder SerializeCommonHeader(ISedapExpressMessage message)
     {
         StringBuilder sb = new();

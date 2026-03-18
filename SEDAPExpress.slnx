@@ -4,5 +4,7 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/SEDAPExpress.Messages.Tests/SEDAPExpress.Messages.Tests.csproj" />
+    <Project Path="tests/SEDAPExpress.TestExtensions/SEDAPExpress.TestExtensions.csproj" />
+    <Project Path="tests/SEDAPExpress.TestExtensions.Tests/SEDAPExpress.TestExtensions.Tests.csproj" />
   </Folder>
 </Solution>
