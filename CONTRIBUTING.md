@@ -55,3 +55,31 @@ tests/SEDAPExpress.Messages.Tests/
 - Package versions are managed centrally in `Directory.Packages.props`. Do not specify versions in individual `.csproj` files.
 
 For detailed architecture notes, naming conventions, and gotchas, see [CLAUDE.md](CLAUDE.md).
+
+## Releasing
+
+Releases are published to NuGet.org automatically by GitHub Actions when a tag is pushed.
+The version is derived from the tag by [MinVer](https://github.com/adamralph/minver).
+
+### Pre-release
+
+```bash
+git tag 1.0.0-preview.1
+git push origin 1.0.0-preview.1
+```
+
+NuGet treats versions with a suffix as pre-release (hidden from search by default).
+Typical progression: `1.0.0-preview.1` → `1.0.0-rc.1` → `1.0.0`.
+
+### Stable release
+
+```bash
+git tag 1.0.0
+git push origin 1.0.0
+```
+
+### Prerequisites
+
+The `NUGET_API_KEY` secret must be set in **Settings → Secrets and variables → Actions**
+(or on the `nuget` environment if environment protection is configured).
+The key must be scoped to push for the `Bundeswehr.Uniity.SEDAPExpress.*` package ID glob.

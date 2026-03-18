@@ -2,5 +2,6 @@
   <PropertyGroup>
     <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
     <RootNamespace>Bundeswehr.Uniity.SEDAPExpress.TestExtensions</RootNamespace>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 </Project>

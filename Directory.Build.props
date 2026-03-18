@@ -19,6 +19,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageDescription>.NET port of the SEDAP-Express Java library for Bundeswehr tactical messaging.</PackageDescription>
+    <PackageTags>sedap;military;messaging;bundeswehr</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
@@ -26,6 +28,7 @@
     <DebugType>portable</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="LICENSE" Pack="true" PackagePath="" />
+    <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="" />
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>
