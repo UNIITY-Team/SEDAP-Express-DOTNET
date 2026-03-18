@@ -11,9 +11,9 @@ public enum TextType
     Undefined,
 
     /// <summary>
-    /// Information.
+    /// Alert.
     /// </summary>
-    Information,
+    Alert,
 
     /// <summary>
     /// Warning.
@@ -21,9 +21,9 @@ public enum TextType
     Warning,
 
     /// <summary>
-    /// Alert.
+    /// Notice.
     /// </summary>
-    Alert,
+    Notice,
 
     /// <summary>
     /// Chat.

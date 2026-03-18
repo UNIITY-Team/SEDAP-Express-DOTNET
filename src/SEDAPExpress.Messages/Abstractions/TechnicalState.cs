@@ -11,19 +11,19 @@ public enum TechnicalState
     OffAbsent,
 
     /// <summary>
-    /// Standby.
+    /// Initializing.
     /// </summary>
-    Standby,
-
-    /// <summary>
-    /// Operational.
-    /// </summary>
-    Operational,
+    Initializing,
 
     /// <summary>
     /// Degraded.
     /// </summary>
     Degraded,
+
+    /// <summary>
+    /// Operational.
+    /// </summary>
+    Operational,
 
     /// <summary>
     /// Fault.

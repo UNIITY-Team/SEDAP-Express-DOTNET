@@ -21,19 +21,19 @@ public sealed class MessageSerializerResendMessageTests
     [Fact]
     public void MessageCanBeDeserialized()
     {
-        var input = "RESEND;18;661D64C0;129E;U;;;LASSY;COMMAND;2B";
+        var input = "RESEND;20;661D64C0;129E;R;;;FE2A;TEXT;5D";
         var actualBase = _sut.Deserialize(input);
         var actual = Assert.IsType<ResendMessage>(actualBase);
         var expected = new ResendMessage(
-            Number: 0x18,
+            Number: 0x20,
             Time: 0x661D64C0,
             Sender: "129E",
-            Classification: Classification.Unclas,
+            Classification: Classification.Restricted,
             Acknowledgement: Acknowledgement.False,
             Mac: null,
-            Recipient: "LASSY",
-            MissingMessageType: MessageType.Command,
-            MissingMessageNumber: 0x2B
+            Recipient: "FE2A",
+            MissingMessageType: MessageType.Text,
+            MissingMessageNumber: 0x5D
         );
         Assert.Equivalent(expected, actual);
     }
@@ -42,18 +42,18 @@ public sealed class MessageSerializerResendMessageTests
     public void MessageCanBeSerialized()
     {
         var message = new ResendMessage(
-            Number: 0x18,
+            Number: 0x20,
             Time: 0x661D64C0,
             Sender: "129E",
-            Classification: Classification.Unclas,
+            Classification: Classification.Restricted,
             Acknowledgement: Acknowledgement.False,
             Mac: null,
-            Recipient: "LASSY",
-            MissingMessageType: MessageType.Command,
-            MissingMessageNumber: 0x2B
+            Recipient: "FE2A",
+            MissingMessageType: MessageType.Text,
+            MissingMessageNumber: 0x5D
         );
         var actual = _sut.Serialize(message);
-        var expected = "RESEND;18;661D64C0;129E;U;;;LASSY;COMMAND;2B";
+        var expected = "RESEND;20;661D64C0;129E;R;;;FE2A;TEXT;5D";
         Assert.Equal(expected, actual);
     }
 }

@@ -374,7 +374,7 @@ public sealed class MessageSerializer : IMessageSerializer
     // -------------------------------------------------------------------------
 
     private static string FormatDouble(double value) =>
-        value.ToString("##.############", CultureInfo.InvariantCulture);
+        value.ToString("0.############", CultureInfo.InvariantCulture);
 
     private static string FormatRgbaHex(int value) =>
         ((uint)value).ToString("X8", CultureInfo.InvariantCulture);
@@ -616,7 +616,7 @@ public sealed class MessageSerializer : IMessageSerializer
         string contactId = fields[offset];
 
         string deleteModeField = Field(fields, offset + 1);
-        if (!HasField(fields, offset + 1) || !DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
+        if (!DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
         {
             Log.ParseFailureInvalidField(logger, "DeleteMode", deleteModeField);
             return false;
@@ -777,7 +777,7 @@ public sealed class MessageSerializer : IMessageSerializer
         string contactId = fields[offset];
 
         string deleteModeField = Field(fields, offset + 1);
-        if (!HasField(fields, offset + 1) || !DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
+        if (!DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
         {
             Log.ParseFailureInvalidField(logger, "DeleteMode", deleteModeField);
             return false;
@@ -908,7 +908,7 @@ public sealed class MessageSerializer : IMessageSerializer
         string emissionId = fields[offset];
 
         string deleteModeField = Field(fields, offset + 1);
-        if (!HasField(fields, offset + 1) || !DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
+        if (!DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
         {
             Log.ParseFailureInvalidField(logger, "DeleteMode", deleteModeField);
             return false;

@@ -11,14 +11,14 @@ public enum OperationalState
     NotOperational,
 
     /// <summary>
-    /// Operational limited.
+    /// Degraded.
     /// </summary>
-    OperationalLimited,
+    Degraded,
 
     /// <summary>
-    /// Operational manual.
+    /// Operational.
     /// </summary>
-    OperationalManual,
+    Operational,
 
     /// <summary>
     /// Operational semi-autonomous.

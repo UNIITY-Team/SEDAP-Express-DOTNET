@@ -11,49 +11,69 @@ public enum CommandType
     Poweroff,
 
     /// <summary>
-    /// Reboot.
+    /// Restart.
     /// </summary>
-    Reboot,
+    Restart,
 
     /// <summary>
-    /// Shutdown.
+    /// Standby.
     /// </summary>
-    Shutdown,
+    Standby,
 
     /// <summary>
-    /// Start.
+    /// Sync time.
     /// </summary>
-    Start,
+    SyncTime,
 
     /// <summary>
-    /// Stop.
+    /// Send status.
     /// </summary>
-    Stop,
+    SendStatus,
 
     /// <summary>
-    /// Pause.
+    /// Move.
     /// </summary>
-    Pause,
+    Move,
 
     /// <summary>
-    /// Resume.
+    /// Rotate.
     /// </summary>
-    Resume,
+    Rotate,
 
     /// <summary>
-    /// Reset.
+    /// Loiter.
     /// </summary>
-    Reset,
+    Loiter,
 
     /// <summary>
-    /// Configure.
+    /// Scan area.
     /// </summary>
-    Configure,
+    ScanArea,
 
     /// <summary>
-    /// Update.
+    /// Take photo.
     /// </summary>
-    Update,
+    TakePhoto,
+
+    /// <summary>
+    /// Make video.
+    /// </summary>
+    MakeVideo,
+
+    /// <summary>
+    /// Live video.
+    /// </summary>
+    LiveVideo,
+
+    /// <summary>
+    /// Engagement.
+    /// </summary>
+    Engagement,
+
+    /// <summary>
+    /// Sanitize.
+    /// </summary>
+    Sanitize,
 
     /// <summary>
     /// Generic action.

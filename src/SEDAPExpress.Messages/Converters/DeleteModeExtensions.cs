@@ -28,12 +28,9 @@ public static class DeleteModeExtensions
             result = DeleteMode.True;
             return true;
         }
-        if (MemoryExtensions.Equals(input, "FALSE", StringComparison.OrdinalIgnoreCase))
-        {
-            result = DeleteMode.False;
-            return true;
-        }
-        result = default;
-        return false;
+        // Empty string or "FALSE" both map to False (mirrors Java behaviour where an
+        // unparseable value is silently coerced to FALSE).
+        result = DeleteMode.False;
+        return input.IsEmpty || MemoryExtensions.Equals(input, "FALSE", StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -11,24 +11,24 @@ public enum CommandState
     Undefined,
 
     /// <summary>
-    /// Received.
+    /// Executed successfully.
     /// </summary>
-    Received,
+    ExecutedSuccessfully,
 
     /// <summary>
-    /// Executing.
+    /// Partially executed successfully.
     /// </summary>
-    Executing,
+    PartiallyExecutedSuccessfully,
 
     /// <summary>
-    /// Executed.
+    /// Executed not successfully.
     /// </summary>
-    Executed,
+    ExecutedNotSuccessfully,
 
     /// <summary>
-    /// Rejected.
+    /// Execution not possible.
     /// </summary>
-    Rejected,
+    ExecutionNotPossible,
 
     /// <summary>
     /// Will execute at.

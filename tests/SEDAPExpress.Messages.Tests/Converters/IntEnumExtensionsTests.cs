@@ -61,17 +61,17 @@ public sealed class IntEnumExtensionsTests
 
     [Theory]
     [InlineData(TechnicalState.OffAbsent, 0)]
-    [InlineData(TechnicalState.Standby, 1)]
-    [InlineData(TechnicalState.Operational, 2)]
-    [InlineData(TechnicalState.Degraded, 3)]
+    [InlineData(TechnicalState.Initializing, 1)]
+    [InlineData(TechnicalState.Degraded, 2)]
+    [InlineData(TechnicalState.Operational, 3)]
     [InlineData(TechnicalState.Fault, 4)]
     public void TechnicalStateToWireIntReturnsExpected(TechnicalState input, int expected) =>
         Assert.Equal(expected, input.ToWireInt());
 
     [Theory]
     [InlineData(OperationalState.NotOperational, 0)]
-    [InlineData(OperationalState.OperationalLimited, 1)]
-    [InlineData(OperationalState.OperationalManual, 2)]
+    [InlineData(OperationalState.Degraded, 1)]
+    [InlineData(OperationalState.Operational, 2)]
     [InlineData(OperationalState.OperationalSemiAutonomous, 3)]
     [InlineData(OperationalState.OperationalAutonomous, 4)]
     public void OperationalStateToWireIntReturnsExpected(OperationalState input, int expected) =>
@@ -79,9 +79,9 @@ public sealed class IntEnumExtensionsTests
 
     [Theory]
     [InlineData(TextType.Undefined, 0)]
-    [InlineData(TextType.Information, 1)]
+    [InlineData(TextType.Alert, 1)]
     [InlineData(TextType.Warning, 2)]
-    [InlineData(TextType.Alert, 3)]
+    [InlineData(TextType.Notice, 3)]
     [InlineData(TextType.Chat, 4)]
     public void TextTypeToWireIntReturnsExpected(TextType input, int expected) =>
         Assert.Equal(expected, input.ToWireInt());
