@@ -10,6 +10,8 @@ dotnet --list-sdks
 
 If `dotnet` is not recognized, no SDK is installed (or you need to reopen the shell after installation).
 
+Alternatively, open the project in the provided [dev container](.devcontainer/devcontainer.json) (VS Code **Dev Containers** extension or GitHub Codespaces). It ships with the .NET 10 SDK pre-installed and restores packages on creation.
+
 ## Building
 
 ```bash
@@ -29,6 +31,16 @@ dotnet test --filter "FullyQualifiedName~MessageSerializerContactMessageTests.Me
 ```
 
 Depending on your environment you may need a firewall exception for the test runner (`testhost.exe`).
+
+### Code coverage
+
+Run tests with coverage collection:
+
+```bash
+dotnet test --settings coverage.runsettings
+```
+
+Coverlet writes Cobertura XML reports to `**/TestResults/**/coverage.cobertura.xml`. CI enforces a **90 % line-coverage** minimum.
 
 ## Architecture
 

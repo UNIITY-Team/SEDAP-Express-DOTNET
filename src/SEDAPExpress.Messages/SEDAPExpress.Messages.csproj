@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$(TargetFrameworkVersion)</TargetFramework>
+    <PackageId>Bundeswehr.Uniity.SEDAPExpress.Messages</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

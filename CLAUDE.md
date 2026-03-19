@@ -11,11 +11,16 @@ dotnet build
 # Run all tests
 dotnet test
 
+# Run all tests with coverage (Cobertura XML output)
+dotnet test --settings coverage.runsettings
+
 # Run a single test
 dotnet test --filter "FullyQualifiedName~MessageSerializerAcknowledgeMessageTests.MessageCanBeDeserialized"
 ```
 
-`TreatWarningsAsErrors` is enabled globally — the build will fail on any analyzer warning.
+`TreatWarningsAsErrors` is enabled globally — the build will fail on any analyzer warning. CI enforces 90 % line coverage via `coverage.runsettings` and coverlet.
+
+A [dev container](.devcontainer/devcontainer.json) is available for VS Code / Codespaces (.NET 10 SDK, C# Dev Kit).
 
 ## Architecture
 

@@ -19,8 +19,15 @@ jobs:
           dotnet-version: "10.x"
       - run: dotnet build --configuration Release
       - run: dotnet test --configuration Release --no-build --settings coverage.runsettings
-      - run: dotnet tool install -g dotnet-reportgenerator-globaltool
-      - run: reportgenerator -reports:"**/TestResults/**/coverage.cobertura.xml" -targetdir:coverage-report "-minimumCoverageThresholds:linecoverage=90"
+      - name: Enforce 90% line coverage
+        run: |
+          RATE=$(grep -m1 -oP '(?<=line-rate=")[^"]+' **/TestResults/**/coverage.cobertura.xml)
+          PCT=$(echo "$RATE * 100" | bc)
+          echo "Line coverage: ${PCT}%"
+          if (( $(echo "$PCT < 90" | bc -l) )); then
+            echo "::error::Line coverage ${PCT}% is below the 90% threshold"
+            exit 1
+          fi
 
   publish:
     needs: build

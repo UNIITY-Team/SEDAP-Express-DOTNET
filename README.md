@@ -13,13 +13,13 @@
 Install the NuGet package:
 
 ```bash
-dotnet add package <PACKAGE-NAME>
+dotnet add package Bundeswehr.Uniity.SEDAPExpress.Messages
 ```
 
 Or add it to your `.csproj`:
 
 ```xml
-<PackageReference Include="<PACKAGE-NAME>" Version="x.y.z" />
+<PackageReference Include="Bundeswehr.Uniity.SEDAPExpress.Messages" Version="x.y.z" />
 ```
 
 ### Setup
@@ -199,6 +199,8 @@ Messages are semicolon-delimited strings. The first seven fields form the common
 | `Acknowledgement` | `TRUE`, `FALSE`, or empty (treated as `FALSE`)                                                                   |
 | `MAC`             | Optional sender MAC address                                                                                      |
 
-## Contributing
+## Development
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+A [dev container](.devcontainer/devcontainer.json) is provided for VS Code / GitHub Codespaces. It installs the .NET 10 SDK and restores packages automatically.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for build, test, and release instructions.
