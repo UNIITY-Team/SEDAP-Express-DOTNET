@@ -69,7 +69,7 @@ git push origin 1.0.0-preview.1
 ```
 
 NuGet treats versions with a suffix as pre-release (hidden from search by default).
-Typical progression: `1.0.0-preview.1` → `1.0.0-rc.1` → `1.0.0`.
+Typical progression: `1.0.0-preview.1` -> `1.0.0-rc.1` -> `1.0.0`.
 
 ### Stable release
 
@@ -80,6 +80,6 @@ git push origin 1.0.0
 
 ### Prerequisites
 
-The `NUGET_API_KEY` secret must be set in **Settings → Secrets and variables → Actions**
+The `NUGET_API_KEY` secret must be set in **Settings -> Secrets and variables -> Actions**
 (or on the `nuget` environment if environment protection is configured).
 The key must be scoped to push for the `Bundeswehr.Uniity.SEDAPExpress.*` package ID glob.

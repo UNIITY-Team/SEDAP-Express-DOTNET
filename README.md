@@ -129,7 +129,7 @@ ContactMessage contact = new(
 );
 
 string wire = serializer.Serialize(contact);
-// → "CONTACT;01;661D64C0;UNIT1;U;;;TRACK01;FALSE;52.52;13.405;;;;;;;;;;;;;;;Target Alpha"
+// -> "CONTACT;01;661D64C0;UNIT1;U;;;TRACK01;FALSE;52.52;13.405;;;;;;;;;;;;;;;Target Alpha"
 ```
 
 Trailing empty fields are stripped automatically on serialization.
@@ -142,20 +142,20 @@ Extension methods for converting enum values to and from their wire representati
 using Bundeswehr.Uniity.SEDAPExpress.Messages;
 
 // Single-char enums:
-char c = Classification.Secret.ToWireChar();                               // → 'S'
+char c = Classification.Secret.ToWireChar();                               // -> 'S'
 bool ok = ClassificationExtensions.TryFromWireChar('S', out Classification cls); // cls = Secret
 
 // String-mapped enums:
-string s = Acknowledgement.True.ToWireString();     // → "TRUE"
-string s = DeleteFlagType.False.ToWireString();     // → "FALSE"
-string s = ContentType.Json.ToWireString();         // → "JSON"
+string s = Acknowledgement.True.ToWireString();     // -> "TRUE"
+string s = DeleteFlagType.False.ToWireString();     // -> "FALSE"
+string s = ContentType.Json.ToWireString();         // -> "JSON"
 
 // Byte-mapped (CommandType uses a non-sequential wire value for GenericAction = 0xFF):
-byte b = CommandType.GenericAction.ToWireByte();                           // → 0xFF
+byte b = CommandType.GenericAction.ToWireByte();                           // -> 0xFF
 bool ok = CommandTypeExtensions.TryFromWireByte(0xFF, out CommandType ct); // ct = GenericAction
 
 // Int-mapped (all remaining enums map sequentially from 0):
-int i = GraphicType.Circle.ToWireInt();                                    // → 4
+int i = GraphicType.Circle.ToWireInt();                                    // -> 4
 bool ok = IntEnumExtensions.TryFromWireInt(4, out GraphicType gt);         // gt = Circle
 ```
 

@@ -1553,8 +1553,8 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
 }
 
 /// <summary>
-/// Provides wire-format strings that the serializer must reject (TryDeserialize → false,
-/// Deserialize → <see cref="MessageParseException"/>).
+/// Provides wire-format strings that the serializer must reject (TryDeserialize -> false,
+/// Deserialize -> <see cref="MessageParseException"/>).
 /// </summary>
 internal sealed class MessageSerializerRejectData : TestDataProvider<string>
 {
