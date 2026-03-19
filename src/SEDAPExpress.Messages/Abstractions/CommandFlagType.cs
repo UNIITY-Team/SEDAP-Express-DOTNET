@@ -3,7 +3,11 @@ namespace Bundeswehr.Uniity.SEDAPExpress.Messages.Abstractions;
 /// <summary>
 /// Command flag.
 /// </summary>
-public enum CommandMode
+/// <remarks>
+/// The "Type" suffix is added to avoid a .NET analyzer warning:
+/// Enums should not end with "Flag".
+/// </remarks>
+public enum CommandFlagType
 {
     /// <summary>
     /// Add.

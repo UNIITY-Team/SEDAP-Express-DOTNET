@@ -25,7 +25,7 @@ public sealed record class CommandMessage(
     string? Mac,
     string? Recipient,
     short? CmdId,
-    CommandMode CmdFlag,
+    CommandFlagType CmdFlag,
     CommandType CmdType,
     IReadOnlyList<string>? CmdTypeDependentParameters) : ISedapExpressMessage
 {

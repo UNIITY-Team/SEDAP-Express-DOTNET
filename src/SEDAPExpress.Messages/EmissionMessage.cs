@@ -37,7 +37,7 @@ public sealed record class EmissionMessage(
     Acknowledgement Acknowledgement,
     string? Mac,
     string EmissionId,
-    DeleteMode DeleteFlag,
+    DeleteFlagType DeleteFlag,
     double? SensorLatitude,
     double? SensorLongitude,
     double? SensorAltitude,

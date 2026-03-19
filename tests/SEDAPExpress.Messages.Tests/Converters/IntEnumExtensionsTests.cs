@@ -28,19 +28,19 @@ public sealed class IntEnumExtensionsTests
     }
 
     [Theory]
-    [InlineData(CommandMode.Add, 0)]
-    [InlineData(CommandMode.Replace, 1)]
-    [InlineData(CommandMode.CancelLast, 2)]
-    [InlineData(CommandMode.CancelAll, 3)]
-    public void CommandModeToWireIntReturnsExpected(CommandMode input, int expected) =>
+    [InlineData(CommandFlagType.Add, 0)]
+    [InlineData(CommandFlagType.Replace, 1)]
+    [InlineData(CommandFlagType.CancelLast, 2)]
+    [InlineData(CommandFlagType.CancelAll, 3)]
+    public void CommandFlagTypeToWireIntReturnsExpected(CommandFlagType input, int expected) =>
         Assert.Equal(expected, input.ToWireInt());
 
     [Theory]
-    [InlineData(0, CommandMode.Add)]
-    [InlineData(3, CommandMode.CancelAll)]
-    public void CommandModeTryFromWireIntReturnsExpected(int input, CommandMode expected)
+    [InlineData(0, CommandFlagType.Add)]
+    [InlineData(3, CommandFlagType.CancelAll)]
+    public void CommandFlagTypeTryFromWireIntReturnsExpected(int input, CommandFlagType expected)
     {
-        bool result = IntEnumExtensions.TryFromWireInt(input, out CommandMode actual);
+        bool result = IntEnumExtensions.TryFromWireInt(input, out CommandFlagType actual);
         Assert.True(result);
         Assert.Equal(expected, actual);
     }

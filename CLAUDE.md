@@ -64,17 +64,17 @@ tests/SEDAPExpress.Messages.Tests/
 
 Each class is `public static` in the `Bundeswehr.Uniity.SEDAPExpress.Messages` namespace (same as the message types, one level up from `Abstractions`). The folder sits under `Converters/` purely for organisation; the `IDE0130` namespace-mismatch diagnostic is set to `:suggestion` in `.editorconfig` so it does not cause a build error.
 
-| Class | Enum(s) | Wire format |
-|---|---|---|
-| `ClassificationExtensions` | `Classification` | `char` (`'P'`, `'U'`, …, `'-'`) |
-| `AcknowledgementExtensions` | `Acknowledgement` | `"TRUE"` or `""` |
-| `DeleteModeExtensions` | `DeleteMode` | `"TRUE"` or `"FALSE"` |
-| `DataEncodingExtensions` | `DataEncoding` | `"BASE64"` or `"NONE"` |
-| `ContentTypeExtensions` | `ContentType` | `"SEDAP"`, `"ASCII"`, `"NMEA"`, `"XML"`, `"JSON"`, `"BINARY"` |
-| `MessageTypeExtensions` | `MessageType` | Uppercase name, e.g. `"CONTACT"` |
-| `ContactSourceExtensions` | `ContactSource` | `char` (`'R'`, `'A'`, `' '`, …) — non-sequential |
-| `CommandTypeExtensions` | `CommandType` | `byte` (`0x00`–`0x09`, `0xFF` for `GenericAction`) — non-sequential |
-| `IntEnumExtensions` | `AlgorithmType`, `CommandMode`, `CommandState`, `EmissionFunction`, `FreqAgility`, `GraphicType`, `OperationalState`, `PrfAgility`, `TechnicalState`, `TextType` | `int` (sequential from 0) |
+| Class                       | Enum(s)                                                                                                                                                              | Wire format                                                         |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `ClassificationExtensions`  | `Classification`                                                                                                                                                     | `char` (`'P'`, `'U'`, …, `'-'`)                                     |
+| `AcknowledgementExtensions` | `Acknowledgement`                                                                                                                                                    | `"TRUE"` or `""`                                                    |
+| `DeleteModeExtensions`      | `DeleteMode`                                                                                                                                                         | `"TRUE"` or `"FALSE"`                                               |
+| `DataEncodingExtensions`    | `DataEncoding`                                                                                                                                                       | `"BASE64"` or `"NONE"`                                              |
+| `ContentTypeExtensions`     | `ContentType`                                                                                                                                                        | `"SEDAP"`, `"ASCII"`, `"NMEA"`, `"XML"`, `"JSON"`, `"BINARY"`       |
+| `MessageTypeExtensions`     | `MessageType`                                                                                                                                                        | Uppercase name, e.g. `"CONTACT"`                                    |
+| `ContactSourceExtensions`   | `ContactSource`                                                                                                                                                      | `char` (`'R'`, `'A'`, `' '`, …) — non-sequential                    |
+| `CommandTypeExtensions`     | `CommandType`                                                                                                                                                        | `byte` (`0x00`–`0x09`, `0xFF` for `GenericAction`) — non-sequential |
+| `IntEnumExtensions`         | `AlgorithmType`, `CommandFlagType`, `CommandState`, `EmissionFunction`, `FreqAgility`, `GraphicType`, `OperationalState`, `PrfAgility`, `TechnicalState`, `TextType` | `int` (sequential from 0)                                           |
 
 ### Naming conventions (from `.editorconfig`)
 

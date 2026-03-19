@@ -42,7 +42,7 @@ public sealed record class ContactMessage(
     Acknowledgement Acknowledgement,
     string? Mac,
     string ContactId,
-    DeleteMode DeleteFlag,
+    DeleteFlagType DeleteFlag,
     double? Latitude,
     double? Longitude,
     double? Altitude,

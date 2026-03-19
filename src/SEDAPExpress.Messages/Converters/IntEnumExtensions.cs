@@ -22,18 +22,18 @@ public static class IntEnumExtensions
         return true;
     }
 
-    /// <summary>Converts this <see cref="CommandMode"/> to its wire integer.</summary>
+    /// <summary>Converts this <see cref="CommandFlagType"/> to its wire integer.</summary>
     /// <param name="value">Value.</param>
     /// <returns>Wire integer.</returns>
-    public static int ToWireInt(this CommandMode value) => (int)value;
+    public static int ToWireInt(this CommandFlagType value) => (int)value;
 
-    /// <summary>Parses a <see cref="CommandMode"/> from a wire integer.</summary>
+    /// <summary>Parses a <see cref="CommandFlagType"/> from a wire integer.</summary>
     /// <param name="input">Input integer.</param>
     /// <param name="result">Result.</param>
     /// <returns><see langword="true"/>.</returns>
-    public static bool TryFromWireInt(int input, out CommandMode result)
+    public static bool TryFromWireInt(int input, out CommandFlagType result)
     {
-        result = (CommandMode)input;
+        result = (CommandFlagType)input;
         return true;
     }
 

@@ -438,25 +438,25 @@ public sealed class MessageSerializer : IMessageSerializer
 
         if (offset + 1 >= fields.Length || fields[offset + 1].Length == 0)
         {
-            Log.ParseFailureInvalidField(logger, "AckedMessageType", string.Empty);
+            Log.ParseFailureInvalidField(logger, nameof(AcknowledgeMessage.TypeOfTheMessage), string.Empty);
             return false;
         }
 
-        if (!MessageTypeExtensions.TryFromWireString(fields[offset + 1].AsSpan(), out MessageType ackedMessageType))
+        if (!MessageTypeExtensions.TryFromWireString(fields[offset + 1].AsSpan(), out MessageType typeOfTheMessage))
         {
-            Log.ParseFailureInvalidField(logger, "AckedMessageType", fields[offset + 1]);
+            Log.ParseFailureInvalidField(logger, nameof(AcknowledgeMessage.TypeOfTheMessage), fields[offset + 1]);
             return false;
         }
 
         if (offset + 2 >= fields.Length || fields[offset + 2].Length == 0)
         {
-            Log.ParseFailureInvalidField(logger, "AckedMessageNumber", string.Empty);
+            Log.ParseFailureInvalidField(logger, nameof(AcknowledgeMessage.NumberOfTheMessage), string.Empty);
             return false;
         }
 
-        if (!TryParseHexByte(fields[offset + 2].AsSpan(), out byte ackedMessageNumber))
+        if (!TryParseHexByte(fields[offset + 2].AsSpan(), out byte numberOfTheMessage))
         {
-            Log.ParseFailureInvalidField(logger, "AckedMessageNumber", fields[offset + 2]);
+            Log.ParseFailureInvalidField(logger, nameof(AcknowledgeMessage.NumberOfTheMessage), fields[offset + 2]);
             return false;
         }
 
@@ -468,8 +468,8 @@ public sealed class MessageSerializer : IMessageSerializer
             Acknowledgement: header.Acknowledgement,
             Mac: header.Mac,
             Recipient: recipient,
-            AckedMessageType: ackedMessageType,
-            AckedMessageNumber: ackedMessageNumber);
+            TypeOfTheMessage: typeOfTheMessage,
+            NumberOfTheMessage: numberOfTheMessage);
         return true;
     }
 
@@ -478,9 +478,9 @@ public sealed class MessageSerializer : IMessageSerializer
         StringBuilder sb = SerializeCommonHeader(m);
         sb.Append(m.Recipient ?? string.Empty);
         sb.Append(FieldSeparator);
-        sb.Append(m.AckedMessageType.ToWireString());
+        sb.Append(m.TypeOfTheMessage.ToWireString());
         sb.Append(FieldSeparator);
-        sb.Append(m.AckedMessageNumber.ToString("X2", CultureInfo.InvariantCulture));
+        sb.Append(m.NumberOfTheMessage.ToString("X2", CultureInfo.InvariantCulture));
         return TrimTrailingSemicolons(sb.ToString());
     }
 
@@ -540,7 +540,7 @@ public sealed class MessageSerializer : IMessageSerializer
             return false;
         }
 
-        _ = IntEnumExtensions.TryFromWireInt(cmdFlagByte, out CommandMode cmdFlag);
+        _ = IntEnumExtensions.TryFromWireInt(cmdFlagByte, out CommandFlagType cmdFlag);
 
         // Remaining parameters
         IReadOnlyList<string>? cmdTypeDependentParameters = null;
@@ -615,10 +615,10 @@ public sealed class MessageSerializer : IMessageSerializer
         }
         string contactId = fields[offset];
 
-        string deleteModeField = Field(fields, offset + 1);
-        if (!DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
+        string deleteFlagField = Field(fields, offset + 1);
+        if (!DeleteFlagTypeExtensions.TryFromWireString(deleteFlagField.AsSpan(), out DeleteFlagType deleteFlag))
         {
-            Log.ParseFailureInvalidField(logger, "DeleteMode", deleteModeField);
+            Log.ParseFailureInvalidField(logger, "DeleteFlag", deleteFlagField);
             return false;
         }
 
@@ -674,7 +674,7 @@ public sealed class MessageSerializer : IMessageSerializer
             Acknowledgement: header.Acknowledgement,
             Mac: header.Mac,
             ContactId: contactId,
-            DeleteFlag: deleteMode,
+            DeleteFlag: deleteFlag,
             Latitude: latitude,
             Longitude: longitude,
             Altitude: altitude,
@@ -776,10 +776,10 @@ public sealed class MessageSerializer : IMessageSerializer
         }
         string contactId = fields[offset];
 
-        string deleteModeField = Field(fields, offset + 1);
-        if (!DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
+        string deleteFlagField = Field(fields, offset + 1);
+        if (!DeleteFlagTypeExtensions.TryFromWireString(deleteFlagField.AsSpan(), out DeleteFlagType deleteFlag))
         {
-            Log.ParseFailureInvalidField(logger, "DeleteMode", deleteModeField);
+            Log.ParseFailureInvalidField(logger, "DeleteFlag", deleteFlagField);
             return false;
         }
 
@@ -820,7 +820,7 @@ public sealed class MessageSerializer : IMessageSerializer
             Acknowledgement: header.Acknowledgement,
             Mac: header.Mac,
             ContactId: contactId,
-            DeleteFlag: deleteMode,
+            DeleteFlag: deleteFlag,
             Latitude: latitude,
             Longitude: longitude,
             Altitude: altitude,
@@ -907,10 +907,10 @@ public sealed class MessageSerializer : IMessageSerializer
         }
         string emissionId = fields[offset];
 
-        string deleteModeField = Field(fields, offset + 1);
-        if (!DeleteModeExtensions.TryFromWireString(deleteModeField.AsSpan(), out DeleteMode deleteMode))
+        string deleteFlagField = Field(fields, offset + 1);
+        if (!DeleteFlagTypeExtensions.TryFromWireString(deleteFlagField.AsSpan(), out DeleteFlagType deleteFlag))
         {
-            Log.ParseFailureInvalidField(logger, "DeleteMode", deleteModeField);
+            Log.ParseFailureInvalidField(logger, "DeleteFlag", deleteFlagField);
             return false;
         }
 
@@ -969,7 +969,7 @@ public sealed class MessageSerializer : IMessageSerializer
             Acknowledgement: header.Acknowledgement,
             Mac: header.Mac,
             EmissionId: emissionId,
-            DeleteFlag: deleteMode,
+            DeleteFlag: deleteFlag,
             SensorLatitude: sensorLat,
             SensorLongitude: sensorLon,
             SensorAltitude: sensorAlt,

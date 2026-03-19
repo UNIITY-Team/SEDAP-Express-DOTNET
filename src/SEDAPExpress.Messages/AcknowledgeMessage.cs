@@ -12,8 +12,8 @@ namespace Bundeswehr.Uniity.SEDAPExpress.Messages;
 /// <param name="Acknowledgement"><inheritdoc/></param>
 /// <param name="Mac"><inheritdoc/></param>
 /// <param name="Recipient">Recipient</param>
-/// <param name="AckedMessageType">Type of the acknowledged message.</param>
-/// <param name="AckedMessageNumber">Number of the acknowledged message.</param>
+/// <param name="TypeOfTheMessage">Type of the acknowledged message.</param>
+/// <param name="NumberOfTheMessage">Number of the acknowledged message.</param>
 public sealed record class AcknowledgeMessage(
     byte? Number,
     long? Time,
@@ -22,8 +22,8 @@ public sealed record class AcknowledgeMessage(
     Acknowledgement Acknowledgement,
     string? Mac,
     string? Recipient,
-    MessageType AckedMessageType,
-    byte AckedMessageNumber) : ISedapExpressMessage
+    MessageType TypeOfTheMessage,
+    byte NumberOfTheMessage) : ISedapExpressMessage
 {
     /// <inheritdoc/>
     public MessageType MessageType => MessageType.Acknowledge;
