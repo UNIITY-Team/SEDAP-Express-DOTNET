@@ -195,18 +195,23 @@ public sealed class MessageSerializer : IMessageSerializer
 
     private static bool TryParseFullHexByte(ReadOnlySpan<char> input, out byte result)
     {
-        // Valid: exactly 2 hex chars, full range 00-FF
-        if (input.Length != 2)
+        // Valid: 1-2 hex chars, full range 0-FF (lenient: single-char "3" == "03")
+        if (input.Length is < 1 or > 2)
         {
             result = 0;
             return false;
         }
-        if (!IsHexChar(input[0]) || !IsHexChar(input[1]))
+        foreach (char c in input)
         {
-            result = 0;
-            return false;
+            if (!IsHexChar(c))
+            {
+                result = 0;
+                return false;
+            }
         }
-        result = (byte)((HexVal(input[0]) << 4) | HexVal(input[1]));
+        result = input.Length == 1
+            ? (byte)HexVal(input[0])
+            : (byte)((HexVal(input[0]) << 4) | HexVal(input[1]));
         return true;
     }
 

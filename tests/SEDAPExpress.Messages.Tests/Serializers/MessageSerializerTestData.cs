@@ -21,7 +21,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
         KeyValuePair<TestKey, SerializerTestCase>[] cases =
         [
             SerializerTestHelper.Pair(
-                "ACKNOWLEDGE-a",
+                "Deserialize/ACKNOWLEDGE-a",
                 "ACKNOWLEDGE;18;661D64C0;129E;R;;;LASSY;COMMAND;2B",
                 new AcknowledgeMessage(
                     Number: 0x18,
@@ -34,7 +34,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     TypeOfTheMessage: MessageType.Command,
                     NumberOfTheMessage: 0x2B)),
             SerializerTestHelper.Pair(
-                "ACKNOWLEDGE-b",
+                "Deserialize/ACKNOWLEDGE-b",
                 "ACKNOWLEDGE;41;A0B0C0D0;BB91;C;TRUE;93B37ACC;LASSY;COMMAND;2B",
                 new AcknowledgeMessage(
                     Number: 0x41,
@@ -48,7 +48,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     NumberOfTheMessage: 0x2B)),
 
             SerializerTestHelper.Pair(
-                "COMMAND-a",
+                "Deserialize/COMMAND-a",
                 "COMMAND;55;1B351C87;5BCD;S;TRUE;4389F10D;7D31;1221;01;0C;hold-engagement;1000",
                 new CommandMessage(
                     Number: 0x55,
@@ -63,7 +63,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     CmdType: CommandType.Engagement,
                     CmdTypeDependentParameters: ["hold-engagement", "1000"])),
             SerializerTestHelper.Pair(
-                "COMMAND-b",
+                "Deserialize/COMMAND-b",
                 "COMMAND;29;661D44C0;E4B3;C;TRUE;;Drone1;;00;FF;OPEN_BAY",
                 new CommandMessage(
                     Number: 0x29,
@@ -79,7 +79,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     CmdTypeDependentParameters: ["OPEN_BAY"])),
             // Lenient: wire uses "3" for cmdType; canonical (serialize) uses "03".
             SerializerTestHelper.Pair(
-                "COMMAND-c",
+                "Deserialize/COMMAND-c",
                 "COMMAND;55;1B351C87;5BCD;S;TRUE;4389F10D;7D31;2892;00;3;10.0.0.1",
                 new CommandMessage(
                     Number: 0x55,
@@ -96,7 +96,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
 
             // Lenient: deleteFlag empty; integer-valued doubles have .0 suffix.
             SerializerTestHelper.Pair(
-                "CONTACT-a",
+                "Deserialize/CONTACT-a",
                 "CONTACT;66;1B351C87;59CE;U;TRUE;FFAA327B;1000;;43.21;-111.22;10011.0;1.0;2.0;3.0;200.0;275.0;10.0;20.0;30.0;33.0;22.0;11.0;Track Alpha;R;SFAPMF---------;221333201;FA550C;"
                     + SerializerTestHelper.MultimediaBase64
                     + ";VGVzdFRyYWNr",
@@ -132,7 +132,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Comment: "TestTrack")),
             // Deserialize only: multi-source HashSet serialization order is non-deterministic.
             SerializerTestHelper.Pair(
-                "CONTACT-b",
+                "Deserialize/CONTACT-b",
                 "CONTACT;5E;661D4410;66A3;R;;;100;FALSE;53.32;8.11;0;;;;120;275;;;;;;;FGS Bayern;AR;SFSPFCLFF------;;;;VXNlIENIMjI=",
                 new ContactMessage(
                     Number: 0x5E,
@@ -165,7 +165,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MultimediaData: null,
                     Comment: "Use CH22")),
             SerializerTestHelper.Pair(
-                "CONTACT-c",
+                "Deserialize/CONTACT-c",
                 "CONTACT;5F;661D5420;83C5;U;;;101;FALSE;36.32;12.11;2000;;;;44;;;;;;;;Unknown;O;;221333201;;;UG9zcyBOZXRoZXJsYW5kcw==",
                 new ContactMessage(
                     Number: 0x5F,
@@ -198,7 +198,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MultimediaData: null,
                     Comment: "Poss Netherlands")),
             SerializerTestHelper.Pair(
-                "CONTACT-d",
+                "Deserialize/CONTACT-d",
                 "CONTACT;60;54742310;4371;S;TRUE;;102;TRUE;53.32;8.11",
                 new ContactMessage(
                     Number: 0x60,
@@ -232,7 +232,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Comment: null)),
             // Lenient: ack "FALSE" in wire (canonical is empty); integer floats have .0.
             SerializerTestHelper.Pair(
-                "CONTACT-e",
+                "Deserialize/CONTACT-e",
                 "CONTACT;66;1B351C87;59CE;U;FALSE;FFAA327B;1000;FALSE;43.21;-111.22;10011.0;1.0;2.0;3.0;200.0;275.0;10.0;20.0;30.0;33.0;22.0;11.0;Track Alpha;E;sfapmf---------;221333201;FA550C;"
                     + SerializerTestHelper.MultimediaBase64
                     + ";VGhpcyBpcyBhIHRlc3QgdHJhY2s=",
@@ -267,10 +267,9 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MultimediaData: Convert.FromBase64String(SerializerTestHelper.MultimediaBase64),
                     Comment: "This is a test track")),
 
-            // ── OWNUNIT ───────────────────────────────────────────────────────────────────
             // Lenient: altitude "5577.0" in wire (canonical is "5577").
             SerializerTestHelper.Pair(
-                "OWNUNIT-a",
+                "Deserialize/OWNUNIT-a",
                 "OWNUNIT;11;1B351C87;22AA;U;TRUE;4389F10D;77.88;-10.12;5577.0;33.44;55.66;1.1;-2.2;3.3;Ownunit;SFGPIB----H----",
                 new OwnUnitMessage(
                     Number: 0x11,
@@ -290,7 +289,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Name: "Ownunit",
                     Sidc: "SFGPIB----H----")),
             SerializerTestHelper.Pair(
-                "OWNUNIT-b",
+                "Deserialize/OWNUNIT-b",
                 "OWNUNIT;5E;661D4410;66A3;R;;;53.32;8.11;0;5.5;21;22;;;FGS Bayern;SFSPFCLFF------",
                 new OwnUnitMessage(
                     Number: 0x5E,
@@ -311,7 +310,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Sidc: "SFSPFCLFF------")),
             // Lenient: ack "FALSE" in wire (canonical is empty); altitude "5577.0".
             SerializerTestHelper.Pair(
-                "OWNUNIT-c",
+                "Deserialize/OWNUNIT-c",
                 "OWNUNIT;11;1B351C87;22AA;U;FALSE;4389F10D;77.88;-10.12;5577.0;33.44;55.66;1.1;-2.2;3.3;Ownunit;SFGPIB----H----",
                 new OwnUnitMessage(
                     Number: 0x11,
@@ -333,7 +332,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
 
             // Lenient: deleteFlag empty; integer floats have .0.
             SerializerTestHelper.Pair(
-                "POINT-a",
+                "Deserialize/POINT-a",
                 "POINT;66;1B351C87;59CE;U;TRUE;FFAA327B;1000;;43.21;-111.22;10011.0;1.0;2.0;3.0;200.0;275.0;10.0;20.0;30.0;33.0;22.0;11.0;Rendezvous;gfgpgpoz-------;"
                     + SerializerTestHelper.MultimediaBase64
                     + ";UmVuZGV6dm91cw==",
@@ -365,7 +364,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MultimediaData: Convert.FromBase64String(SerializerTestHelper.MultimediaBase64),
                     Comment: "Rendezvous")),
             SerializerTestHelper.Pair(
-                "POINT-b",
+                "Deserialize/POINT-b",
                 "POINT;5E;661D4410;66A3;R;;;100;FALSE;53.32;8.11;0;;;;120;275;;;;;;;Target Alpha;gffppt---------;;VGFyZ2V0IHBvaW50",
                 new PointMessage(
                     Number: 0x5E,
@@ -395,7 +394,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MultimediaData: null,
                     Comment: "Target point")),
             SerializerTestHelper.Pair(
-                "POINT-c",
+                "Deserialize/POINT-c",
                 "POINT;5F;661D5420;83C5;U;;;101;FALSE;36.32;12.11;2000;;;;44;;;;;;;;Unknown;;;UG9zcyBOZXRoZXJsYW5kcw==",
                 new PointMessage(
                     Number: 0x5F,
@@ -425,7 +424,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MultimediaData: null,
                     Comment: "Poss Netherlands")),
             SerializerTestHelper.Pair(
-                "POINT-d",
+                "Deserialize/POINT-d",
                 "POINT;60;54742310;4371;S;TRUE;;102;TRUE;53.32;8.11",
                 new PointMessage(
                     Number: 0x60,
@@ -456,7 +455,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Comment: null)),
             // Lenient: ack "FALSE" in wire (canonical is empty); integer floats have .0.
             SerializerTestHelper.Pair(
-                "POINT-e",
+                "Deserialize/POINT-e",
                 "POINT;66;1B351C87;59CE;U;FALSE;FFAA327B;1000;FALSE;43.21;-111.22;10011.0;1.0;2.0;3.0;200.0;275.0;10.0;20.0;30.0;33.0;22.0;11.0;Track Alpha;sfapmf---------;"
                     + SerializerTestHelper.MultimediaBase64
                     + ";VGhpcyBpcyBhIHRlc3QgdHJhY2s=",
@@ -489,7 +488,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Comment: "This is a test track")),
 
             SerializerTestHelper.Pair(
-                "RESEND-a",
+                "Deserialize/RESEND-a",
                 "RESEND;20;661D64C0;129E;R;;;FE2A;TEXT;5D",
                 new ResendMessage(
                     Number: 0x20,
@@ -502,7 +501,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MissingMessageType: MessageType.Text,
                     MissingMessageNumber: 0x5D)),
             SerializerTestHelper.Pair(
-                "RESEND-b",
+                "Deserialize/RESEND-b",
                 "RESEND;78;1135AA87;2B65;S;TRUE;6389F10D;7D31;COMMAND;33",
                 new ResendMessage(
                     Number: 0x78,
@@ -516,7 +515,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MissingMessageNumber: 0x33)),
 
             SerializerTestHelper.Pair(
-                "STATUS-a",
+                "Deserialize/STATUS-a",
                 "STATUS;41;50505050;BB91;C;TRUE;93B37ACC;2;1;#20.3;#30.4;#40.5;;;MTAuOC4wLjY=;cnRzcDovLzEwLjguMC42L3N0cmVhbTE=;U2FtcGxlVGV4dCE=",
                 new StatusMessage(
                     Number: 0x41,
@@ -540,7 +539,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     FreeText: "SampleText!")),
             // Lenient: time field is lowercase hex (canonical is uppercase).
             SerializerTestHelper.Pair(
-                "STATUS-b",
+                "Deserialize/STATUS-b",
                 "STATUS;15;66e2d520;LASSY;C;;;3;2;;;MainBattery#100;;;MTkyLjE2OC4xNjguMTA1;aHR0cDovLzE5Mi4xNjguMTY4LjEwNTo4MDgwL3N0cmVhbT90b3BpYz0vYXJndXMvYXIwMjM0X2Zyb250X2xlZnQvaW1hZ2VfcmF3",
                 new StatusMessage(
                     Number: 0x15,
@@ -563,7 +562,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     MediaUrls: ["http://192.168.168.105:8080/stream?topic=/argus/ar0234_front_left/image_raw"],
                     FreeText: null)),
             SerializerTestHelper.Pair(
-                "STATUS-c",
+                "Deserialize/STATUS-c",
                 "STATUS;41;A0B0C0D0;BB91;C;TRUE;93B37ACC;2;1;#20.3;#30.4;#40.5;;;MTAuOC4wLjY=;cnRzcDovLzEwLjguMC42L3N0cmVhbTE=#cnRzcDovLzEwLjguMC42L3N0cmVhbTI=;U2FtcGxlVGV4dCE=",
                 new StatusMessage(
                     Number: 0x41,
@@ -587,7 +586,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     FreeText: "SampleText!")),
 
             SerializerTestHelper.Pair(
-                "TEXT-a",
+                "Deserialize/TEXT-a",
                 "TEXT;13;661D44D2;324E;S;TRUE;;;1;NONE;\"This is an alert!\"",
                 new TextMessage(
                     Number: 0x13,
@@ -602,7 +601,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     TextContent: "\"This is an alert!\"",
                     Reference: null)),
             SerializerTestHelper.Pair(
-                "TEXT-b",
+                "Deserialize/TEXT-b",
                 "TEXT;74;661D458E;324E;C;TRUE;;;2;NONE;\"This is a warning!\"",
                 new TextMessage(
                     Number: 0x74,
@@ -618,7 +617,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Reference: null)),
             // Note: encoding field is empty in the wire format; Encoding parses as null (not DataEncoding.None).
             SerializerTestHelper.Pair(
-                "TEXT-c",
+                "Deserialize/TEXT-c",
                 "TEXT;15;661D6565;324E;R;;;;3;;\"This is a notice!\";1133",
                 new TextMessage(
                     Number: 0x15,
@@ -633,7 +632,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     TextContent: "\"This is a notice!\"",
                     Reference: "1133")),
             SerializerTestHelper.Pair(
-                "TEXT-d",
+                "Deserialize/TEXT-d",
                 "TEXT;26;661D7032;324E;U;;;E4F1;4;BASE64;IlRoaXMgaXMgYSBjaGF0IG1lc3NhZ2UhIg==",
                 new TextMessage(
                     Number: 0x26,
@@ -648,7 +647,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     TextContent: "\"This is a chat message!\"",
                     Reference: null)),
             SerializerTestHelper.Pair(
-                "TEXT-e",
+                "Deserialize/TEXT-e",
                 "TEXT;55;1B351C87;5BCD;S;TRUE;4389F10D;7D31;3;NONE;10.0.0.1",
                 new TextMessage(
                     Number: 0x55,
@@ -664,7 +663,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Reference: null)),
 
             SerializerTestHelper.Pair(
-                "EMISSION-a",
+                "Deserialize/EMISSION-a",
                 "EMISSION;18;661D64C0;129E;U;;;EM001;FALSE;48.5;11.2;;;;;90.5;100.5#200.3",
                 new EmissionMessage(
                     Number: 0x18,
@@ -693,7 +692,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Comment: null)),
 
             SerializerTestHelper.Pair(
-                "GENERIC-a",
+                "Deserialize/GENERIC-a",
                 "GENERIC;18;661D64C0;129E;U;;;SEDAP;NONE;some content here",
                 new GenericMessage(
                     Number: 0x18,
@@ -706,9 +705,8 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Encoding: DataEncoding.None,
                     Content: "some content here")),
 
-            // ── GRAPHIC ───────────────────────────────────────────────────────────────────
             SerializerTestHelper.Pair(
-                "GRAPHIC-a",
+                "Deserialize/GRAPHIC-a",
                 "GRAPHIC;18;661D64C0;129E;U;;;4;2;FF0000FF;00FF00FF;0000FFFF;NONE;label",
                 new GraphicMessage(
                     Number: 0x18,
@@ -726,7 +724,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Annotation: "label")),
 
             SerializerTestHelper.Pair(
-                "HEARTBEAT-a",
+                "Deserialize/HEARTBEAT-a",
                 "HEARTBEAT;18;661D64C0;129E;U;;;LASSY",
                 new HeartbeatMessage(
                     Number: 0x18,
@@ -738,7 +736,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Recipient: "LASSY")),
 
             SerializerTestHelper.Pair(
-                "KEYEXCHANGE-a",
+                "Deserialize/KEYEXCHANGE-a",
                 "KEYEXCHANGE;18;661D64C0;129E;U;;;LASSY;0;1;256;2048;DEADBEEF;CAFEBABE;0000000066AABBCC",
                 new KeyexchangeMessage(
                     Number: 0x18,
@@ -758,7 +756,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     PublicKey: null)),
 
             SerializerTestHelper.Pair(
-                "METEO-a",
+                "Deserialize/METEO-a",
                 "METEO;18;661D64C0;129E;U;;;;;;;;22.5;;75;1013.25",
                 new MeteoMessage(
                     Number: 0x18,
@@ -784,7 +782,7 @@ internal sealed class MessageSerializerDeserializeData : TestDataProvider<Serial
                     Reference: null)),
 
             SerializerTestHelper.Pair(
-                "TIMESYNC-a",
+                "Deserialize/TIMESYNC-a",
                 "TIMESYNC;18;661D64C0;129E;U;;;0000000066AABBCC",
                 new TimesyncMessage(
                     Number: 0x18,
@@ -812,7 +810,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
         KeyValuePair<TestKey, SerializerTestCase>[] cases =
         [
             SerializerTestHelper.Pair(
-                "ACKNOWLEDGE-a",
+                "Serialize/ACKNOWLEDGE-a",
                 "ACKNOWLEDGE;18;661D64C0;129E;R;;;LASSY;COMMAND;2B",
                 new AcknowledgeMessage(
                     Number: 0x18,
@@ -825,7 +823,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     TypeOfTheMessage: MessageType.Command,
                     NumberOfTheMessage: 0x2B)),
             SerializerTestHelper.Pair(
-                "ACKNOWLEDGE-b",
+                "Serialize/ACKNOWLEDGE-b",
                 "ACKNOWLEDGE;41;A0B0C0D0;BB91;C;TRUE;93B37ACC;LASSY;COMMAND;2B",
                 new AcknowledgeMessage(
                     Number: 0x41,
@@ -839,7 +837,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     NumberOfTheMessage: 0x2B)),
 
             SerializerTestHelper.Pair(
-                "COMMAND-a",
+                "Serialize/COMMAND-a",
                 "COMMAND;55;1B351C87;5BCD;S;TRUE;4389F10D;7D31;1221;01;0C;hold-engagement;1000",
                 new CommandMessage(
                     Number: 0x55,
@@ -854,7 +852,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     CmdType: CommandType.Engagement,
                     CmdTypeDependentParameters: ["hold-engagement", "1000"])),
             SerializerTestHelper.Pair(
-                "COMMAND-b",
+                "Serialize/COMMAND-b",
                 "COMMAND;29;661D44C0;E4B3;C;TRUE;;Drone1;;00;FF;OPEN_BAY",
                 new CommandMessage(
                     Number: 0x29,
@@ -870,7 +868,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     CmdTypeDependentParameters: ["OPEN_BAY"])),
             // Canonical: cmdType "03" (X2 hex), not "3".
             SerializerTestHelper.Pair(
-                "COMMAND-c",
+                "Serialize/COMMAND-c",
                 "COMMAND;55;1B351C87;5BCD;S;TRUE;4389F10D;7D31;2892;00;03;10.0.0.1",
                 new CommandMessage(
                     Number: 0x55,
@@ -887,7 +885,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
 
             // Canonical: deleteFlag "FALSE"; integer doubles without .0 suffix.
             SerializerTestHelper.Pair(
-                "CONTACT-a",
+                "Serialize/CONTACT-a",
                 "CONTACT;66;1B351C87;59CE;U;TRUE;FFAA327B;1000;FALSE;43.21;-111.22;10011;1;2;3;200;275;10;20;30;33;22;11;Track Alpha;R;SFAPMF---------;221333201;FA550C;"
                     + SerializerTestHelper.MultimediaBase64
                     + ";VGVzdFRyYWNr",
@@ -923,7 +921,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Comment: "TestTrack")),
             // CONTACT-b omitted: multi-source HashSet serialization order is non-deterministic.
             SerializerTestHelper.Pair(
-                "CONTACT-c",
+                "Serialize/CONTACT-c",
                 "CONTACT;5F;661D5420;83C5;U;;;101;FALSE;36.32;12.11;2000;;;;44;;;;;;;;Unknown;O;;221333201;;;UG9zcyBOZXRoZXJsYW5kcw==",
                 new ContactMessage(
                     Number: 0x5F,
@@ -956,7 +954,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     MultimediaData: null,
                     Comment: "Poss Netherlands")),
             SerializerTestHelper.Pair(
-                "CONTACT-d",
+                "Serialize/CONTACT-d",
                 "CONTACT;60;54742310;4371;S;TRUE;;102;TRUE;53.32;8.11",
                 new ContactMessage(
                     Number: 0x60,
@@ -990,7 +988,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Comment: null)),
             // Canonical: ack "" (empty, not "FALSE"); integer doubles without .0 suffix.
             SerializerTestHelper.Pair(
-                "CONTACT-e",
+                "Serialize/CONTACT-e",
                 "CONTACT;66;1B351C87;59CE;U;;FFAA327B;1000;FALSE;43.21;-111.22;10011;1;2;3;200;275;10;20;30;33;22;11;Track Alpha;E;sfapmf---------;221333201;FA550C;"
                     + SerializerTestHelper.MultimediaBase64
                     + ";VGhpcyBpcyBhIHRlc3QgdHJhY2s=",
@@ -1027,7 +1025,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
 
             // Canonical: altitude "5577" (not "5577.0").
             SerializerTestHelper.Pair(
-                "OWNUNIT-a",
+                "Serialize/OWNUNIT-a",
                 "OWNUNIT;11;1B351C87;22AA;U;TRUE;4389F10D;77.88;-10.12;5577;33.44;55.66;1.1;-2.2;3.3;Ownunit;SFGPIB----H----",
                 new OwnUnitMessage(
                     Number: 0x11,
@@ -1047,7 +1045,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Name: "Ownunit",
                     Sidc: "SFGPIB----H----")),
             SerializerTestHelper.Pair(
-                "OWNUNIT-b",
+                "Serialize/OWNUNIT-b",
                 "OWNUNIT;5E;661D4410;66A3;R;;;53.32;8.11;0;5.5;21;22;;;FGS Bayern;SFSPFCLFF------",
                 new OwnUnitMessage(
                     Number: 0x5E,
@@ -1068,7 +1066,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Sidc: "SFSPFCLFF------")),
             // Canonical: ack "" (empty, not "FALSE"); altitude "5577".
             SerializerTestHelper.Pair(
-                "OWNUNIT-c",
+                "Serialize/OWNUNIT-c",
                 "OWNUNIT;11;1B351C87;22AA;U;;4389F10D;77.88;-10.12;5577;33.44;55.66;1.1;-2.2;3.3;Ownunit;SFGPIB----H----",
                 new OwnUnitMessage(
                     Number: 0x11,
@@ -1090,7 +1088,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
 
             // Canonical: deleteFlag "FALSE"; integer doubles without .0 suffix.
             SerializerTestHelper.Pair(
-                "POINT-a",
+                "Serialize/POINT-a",
                 "POINT;66;1B351C87;59CE;U;TRUE;FFAA327B;1000;FALSE;43.21;-111.22;10011;1;2;3;200;275;10;20;30;33;22;11;Rendezvous;gfgpgpoz-------;"
                     + SerializerTestHelper.MultimediaBase64
                     + ";UmVuZGV6dm91cw==",
@@ -1122,7 +1120,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     MultimediaData: Convert.FromBase64String(SerializerTestHelper.MultimediaBase64),
                     Comment: "Rendezvous")),
             SerializerTestHelper.Pair(
-                "POINT-b",
+                "Serialize/POINT-b",
                 "POINT;5E;661D4410;66A3;R;;;100;FALSE;53.32;8.11;0;;;;120;275;;;;;;;Target Alpha;gffppt---------;;VGFyZ2V0IHBvaW50",
                 new PointMessage(
                     Number: 0x5E,
@@ -1152,7 +1150,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     MultimediaData: null,
                     Comment: "Target point")),
             SerializerTestHelper.Pair(
-                "POINT-c",
+                "Serialize/POINT-c",
                 "POINT;5F;661D5420;83C5;U;;;101;FALSE;36.32;12.11;2000;;;;44;;;;;;;;Unknown;;;UG9zcyBOZXRoZXJsYW5kcw==",
                 new PointMessage(
                     Number: 0x5F,
@@ -1182,7 +1180,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     MultimediaData: null,
                     Comment: "Poss Netherlands")),
             SerializerTestHelper.Pair(
-                "POINT-d",
+                "Serialize/POINT-d",
                 "POINT;60;54742310;4371;S;TRUE;;102;TRUE;53.32;8.11",
                 new PointMessage(
                     Number: 0x60,
@@ -1213,7 +1211,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Comment: null)),
             // Canonical: ack "" (empty, not "FALSE"); integer doubles without .0 suffix.
             SerializerTestHelper.Pair(
-                "POINT-e",
+                "Serialize/POINT-e",
                 "POINT;66;1B351C87;59CE;U;;FFAA327B;1000;FALSE;43.21;-111.22;10011;1;2;3;200;275;10;20;30;33;22;11;Track Alpha;sfapmf---------;"
                     + SerializerTestHelper.MultimediaBase64
                     + ";VGhpcyBpcyBhIHRlc3QgdHJhY2s=",
@@ -1246,7 +1244,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Comment: "This is a test track")),
 
             SerializerTestHelper.Pair(
-                "RESEND-a",
+                "Serialize/RESEND-a",
                 "RESEND;20;661D64C0;129E;R;;;FE2A;TEXT;5D",
                 new ResendMessage(
                     Number: 0x20,
@@ -1259,7 +1257,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     MissingMessageType: MessageType.Text,
                     MissingMessageNumber: 0x5D)),
             SerializerTestHelper.Pair(
-                "RESEND-b",
+                "Serialize/RESEND-b",
                 "RESEND;78;1135AA87;2B65;S;TRUE;6389F10D;7D31;COMMAND;33",
                 new ResendMessage(
                     Number: 0x78,
@@ -1273,7 +1271,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     MissingMessageNumber: 0x33)),
 
             SerializerTestHelper.Pair(
-                "STATUS-a",
+                "Serialize/STATUS-a",
                 "STATUS;41;50505050;BB91;C;TRUE;93B37ACC;2;1;#20.3;#30.4;#40.5;;;MTAuOC4wLjY=;cnRzcDovLzEwLjguMC42L3N0cmVhbTE=;U2FtcGxlVGV4dCE=",
                 new StatusMessage(
                     Number: 0x41,
@@ -1297,7 +1295,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     FreeText: "SampleText!")),
             // Canonical: time field uppercase hex "66E2D520".
             SerializerTestHelper.Pair(
-                "STATUS-b",
+                "Serialize/STATUS-b",
                 "STATUS;15;66E2D520;LASSY;C;;;3;2;;;MainBattery#100;;;MTkyLjE2OC4xNjguMTA1;aHR0cDovLzE5Mi4xNjguMTY4LjEwNTo4MDgwL3N0cmVhbT90b3BpYz0vYXJndXMvYXIwMjM0X2Zyb250X2xlZnQvaW1hZ2VfcmF3",
                 new StatusMessage(
                     Number: 0x15,
@@ -1320,7 +1318,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     MediaUrls: ["http://192.168.168.105:8080/stream?topic=/argus/ar0234_front_left/image_raw"],
                     FreeText: null)),
             SerializerTestHelper.Pair(
-                "STATUS-c",
+                "Serialize/STATUS-c",
                 "STATUS;41;A0B0C0D0;BB91;C;TRUE;93B37ACC;2;1;#20.3;#30.4;#40.5;;;MTAuOC4wLjY=;cnRzcDovLzEwLjguMC42L3N0cmVhbTE=#cnRzcDovLzEwLjguMC42L3N0cmVhbTI=;U2FtcGxlVGV4dCE=",
                 new StatusMessage(
                     Number: 0x41,
@@ -1344,7 +1342,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     FreeText: "SampleText!")),
 
             SerializerTestHelper.Pair(
-                "TEXT-a",
+                "Serialize/TEXT-a",
                 "TEXT;13;661D44D2;324E;S;TRUE;;;1;NONE;\"This is an alert!\"",
                 new TextMessage(
                     Number: 0x13,
@@ -1359,7 +1357,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     TextContent: "\"This is an alert!\"",
                     Reference: null)),
             SerializerTestHelper.Pair(
-                "TEXT-b",
+                "Serialize/TEXT-b",
                 "TEXT;74;661D458E;324E;C;TRUE;;;2;NONE;\"This is a warning!\"",
                 new TextMessage(
                     Number: 0x74,
@@ -1374,7 +1372,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     TextContent: "\"This is a warning!\"",
                     Reference: null)),
             SerializerTestHelper.Pair(
-                "TEXT-c",
+                "Serialize/TEXT-c",
                 "TEXT;15;661D6565;324E;R;;;;3;;\"This is a notice!\";1133",
                 new TextMessage(
                     Number: 0x15,
@@ -1389,7 +1387,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     TextContent: "\"This is a notice!\"",
                     Reference: "1133")),
             SerializerTestHelper.Pair(
-                "TEXT-d",
+                "Serialize/TEXT-d",
                 "TEXT;26;661D7032;324E;U;;;E4F1;4;BASE64;IlRoaXMgaXMgYSBjaGF0IG1lc3NhZ2UhIg==",
                 new TextMessage(
                     Number: 0x26,
@@ -1404,7 +1402,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     TextContent: "\"This is a chat message!\"",
                     Reference: null)),
             SerializerTestHelper.Pair(
-                "TEXT-e",
+                "Serialize/TEXT-e",
                 "TEXT;55;1B351C87;5BCD;S;TRUE;4389F10D;7D31;3;NONE;10.0.0.1",
                 new TextMessage(
                     Number: 0x55,
@@ -1420,7 +1418,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Reference: null)),
 
             SerializerTestHelper.Pair(
-                "EMISSION-a",
+                "Serialize/EMISSION-a",
                 "EMISSION;18;661D64C0;129E;U;;;EM001;FALSE;48.5;11.2;;;;;90.5;100.5#200.3",
                 new EmissionMessage(
                     Number: 0x18,
@@ -1449,7 +1447,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Comment: null)),
 
             SerializerTestHelper.Pair(
-                "GENERIC-a",
+                "Serialize/GENERIC-a",
                 "GENERIC;18;661D64C0;129E;U;;;SEDAP;NONE;some content here",
                 new GenericMessage(
                     Number: 0x18,
@@ -1463,7 +1461,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Content: "some content here")),
 
             SerializerTestHelper.Pair(
-                "GRAPHIC-a",
+                "Serialize/GRAPHIC-a",
                 "GRAPHIC;18;661D64C0;129E;U;;;4;2;FF0000FF;00FF00FF;0000FFFF;NONE;label",
                 new GraphicMessage(
                     Number: 0x18,
@@ -1481,7 +1479,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Annotation: "label")),
 
             SerializerTestHelper.Pair(
-                "HEARTBEAT-a",
+                "Serialize/HEARTBEAT-a",
                 "HEARTBEAT;18;661D64C0;129E;U;;;LASSY",
                 new HeartbeatMessage(
                     Number: 0x18,
@@ -1492,9 +1490,8 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Mac: null,
                     Recipient: "LASSY")),
 
-            // ── KEYEXCHANGE ───────────────────────────────────────────────────────────────
             SerializerTestHelper.Pair(
-                "KEYEXCHANGE-a",
+                "Serialize/KEYEXCHANGE-a",
                 "KEYEXCHANGE;18;661D64C0;129E;U;;;LASSY;0;1;256;2048;DEADBEEF;CAFEBABE;0000000066AABBCC",
                 new KeyexchangeMessage(
                     Number: 0x18,
@@ -1514,7 +1511,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     PublicKey: null)),
 
             SerializerTestHelper.Pair(
-                "METEO-a",
+                "Serialize/METEO-a",
                 "METEO;18;661D64C0;129E;U;;;;;;;;22.5;;75;1013.25",
                 new MeteoMessage(
                     Number: 0x18,
@@ -1540,7 +1537,7 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Reference: null)),
 
             SerializerTestHelper.Pair(
-                "TIMESYNC-a",
+                "Serialize/TIMESYNC-a",
                 "TIMESYNC;18;661D64C0;129E;U;;;0000000066AABBCC",
                 new TimesyncMessage(
                     Number: 0x18,
@@ -1550,6 +1547,33 @@ internal sealed class MessageSerializerSerializeData : TestDataProvider<Serializ
                     Acknowledgement: Acknowledgement.False,
                     Mac: null,
                     Timestamp: 0x0000000066AABBCCL)),
+        ];
+        return cases;
+    }
+}
+
+/// <summary>
+/// Provides wire-format strings that the serializer must reject (TryDeserialize → false,
+/// Deserialize → <see cref="MessageParseException"/>).
+/// </summary>
+internal sealed class MessageSerializerRejectData : TestDataProvider<string>
+{
+    /// <inheritdoc/>
+    protected override IReadOnlyCollection<KeyValuePair<TestKey, string>> Fill()
+    {
+        KeyValuePair<TestKey, string>[] cases =
+        [
+            SerializerTestHelper.Reject("Reject/empty", ""),
+            SerializerTestHelper.Reject("Reject/too-few-fields", "CONTACT;01;66E2D520;SENDER;U"),
+            SerializerTestHelper.Reject("Reject/unknown-type", "BOGUS;01;66E2D520;SENDER;U;;"),
+            SerializerTestHelper.Reject("Reject/number-high-nibble", "CONTACT;80;66E2D520;SENDER;U;;;ID"),
+            SerializerTestHelper.Reject("Reject/time-too-short", "CONTACT;01;66E2D52;SENDER;U;;;ID"),
+            SerializerTestHelper.Reject("Reject/time-too-long", "CONTACT;01;66E2D520123456789;SENDER;U;;;ID"),
+            SerializerTestHelper.Reject("Reject/ACKNOWLEDGE-unknown-type", "ACKNOWLEDGE;01;66E2D520;SENDER;U;;;RCP;BOGUS;01"),
+            SerializerTestHelper.Reject("Reject/COMMAND-unknown-CmdType", "COMMAND;01;66E2D520;SENDER;U;;;RCP;;00;10"),
+            SerializerTestHelper.Reject("Reject/OWNUNIT-invalid-latitude", "OWNUNIT;01;66E2D520;SENDER;U;;;abc;0.0"),
+            SerializerTestHelper.Reject("Reject/OWNUNIT-invalid-longitude", "OWNUNIT;01;66E2D520;SENDER;U;;;48.5;xyz"),
+            SerializerTestHelper.Reject("Reject/RESEND-unknown-missing-type", "RESEND;01;66E2D520;SENDER;U;;;RCP;BOGUS;01"),
         ];
         return cases;
     }
@@ -1578,4 +1602,10 @@ file static class SerializerTestHelper
         string wireFormat,
         ISedapExpressMessage message) =>
         new(new TestKey(key), new SerializerTestCase(wireFormat, message));
+
+    /// <summary>
+    /// Shorthand for creating a reject test case (wire format only, no expected message).
+    /// </summary>
+    public static KeyValuePair<TestKey, string> Reject(string key, string wireFormat) =>
+        new(new TestKey(key), wireFormat);
 }

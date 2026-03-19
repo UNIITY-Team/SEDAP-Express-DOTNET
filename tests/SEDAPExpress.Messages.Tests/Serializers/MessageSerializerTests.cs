@@ -1,8 +1,7 @@
-using Microsoft.Extensions.Logging;
 using Bundeswehr.Uniity.SEDAPExpress.Messages.Abstractions;
 using Bundeswehr.Uniity.SEDAPExpress.Messages.Serializers;
 using Bundeswehr.Uniity.SEDAPExpress.TestExtensions;
-using FakeItEasy;
+using Xunit.Abstractions;
 
 namespace Bundeswehr.Uniity.SEDAPExpress.Messages.Tests.Serializers;
 
@@ -10,12 +9,13 @@ public sealed class MessageSerializerTests
 {
     private static readonly MessageSerializerDeserializeData DeserializeData = new();
     private static readonly MessageSerializerSerializeData SerializeData = new();
+    private static readonly MessageSerializerRejectData RejectData = new();
 
     private readonly MessageSerializer _sut;
 
-    public MessageSerializerTests()
+    public MessageSerializerTests(ITestOutputHelper output)
     {
-        _sut = new MessageSerializer(A.Fake<ILogger<MessageSerializer>>());
+        _sut = new MessageSerializer(new TestOutputLogger<MessageSerializer>(output));
     }
 
     [Theory]
@@ -34,5 +34,14 @@ public sealed class MessageSerializerTests
         (string wireFormat, ISedapExpressMessage message) = SerializeData.Get(key);
         string actual = _sut.Serialize(message);
         Assert.Equal(wireFormat, actual);
+    }
+
+    [Theory]
+    [ClassData(typeof(MessageSerializerRejectData))]
+    public void MessageCannotBeDeserialized(TestKey key)
+    {
+        string wireFormat = RejectData.Get(key);
+        Assert.False(_sut.TryDeserialize(wireFormat, out ISedapExpressMessage? _));
+        Assert.Throws<MessageParseException>(() => _sut.Deserialize(wireFormat));
     }
 }
