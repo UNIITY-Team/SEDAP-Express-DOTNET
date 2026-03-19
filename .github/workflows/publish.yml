@@ -21,6 +21,7 @@ jobs:
       - run: dotnet test --configuration Release --no-build --settings coverage.runsettings
       - name: Enforce 90% line coverage
         run: |
+          shopt -s globstar
           RATE=$(grep -m1 -oP '(?<=line-rate=")[^"]+' **/TestResults/**/coverage.cobertura.xml)
           PCT=$(echo "$RATE * 100" | bc)
           echo "Line coverage: ${PCT}%"
