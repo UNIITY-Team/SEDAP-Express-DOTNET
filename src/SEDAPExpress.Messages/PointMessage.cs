@@ -12,7 +12,7 @@ namespace Bundeswehr.Uniity.SEDAPExpress.Messages;
 /// <param name="Acknowledgement"><inheritdoc/></param>
 /// <param name="Mac"><inheritdoc/></param>
 /// <param name="ContactId">Point identifier.</param>
-/// <param name="DeleteMode">Delete flag.</param>
+/// <param name="DeleteFlag">Delete flag.</param>
 /// <param name="Latitude">Latitude in degrees.</param>
 /// <param name="Longitude">Longitude in degrees.</param>
 /// <param name="Altitude">Altitude in meters.</param>
@@ -39,7 +39,7 @@ public sealed record class PointMessage(
     Acknowledgement Acknowledgement,
     string? Mac,
     string ContactId,
-    DeleteMode DeleteMode,
+    DeleteMode DeleteFlag,
     double? Latitude,
     double? Longitude,
     double? Altitude,

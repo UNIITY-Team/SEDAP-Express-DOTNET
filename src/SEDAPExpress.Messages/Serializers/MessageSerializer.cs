@@ -674,7 +674,7 @@ public sealed class MessageSerializer : IMessageSerializer
             Acknowledgement: header.Acknowledgement,
             Mac: header.Mac,
             ContactId: contactId,
-            DeleteMode: deleteMode,
+            DeleteFlag: deleteMode,
             Latitude: latitude,
             Longitude: longitude,
             Altitude: altitude,
@@ -704,7 +704,7 @@ public sealed class MessageSerializer : IMessageSerializer
         StringBuilder sb = SerializeCommonHeader(m);
         sb.Append(m.ContactId);
         sb.Append(FieldSeparator);
-        sb.Append(m.DeleteMode.ToWireString());
+        sb.Append(m.DeleteFlag.ToWireString());
         sb.Append(FieldSeparator);
         AppendOptionalDouble(sb, m.Latitude);
         sb.Append(FieldSeparator);
@@ -820,7 +820,7 @@ public sealed class MessageSerializer : IMessageSerializer
             Acknowledgement: header.Acknowledgement,
             Mac: header.Mac,
             ContactId: contactId,
-            DeleteMode: deleteMode,
+            DeleteFlag: deleteMode,
             Latitude: latitude,
             Longitude: longitude,
             Altitude: altitude,
@@ -847,7 +847,7 @@ public sealed class MessageSerializer : IMessageSerializer
         StringBuilder sb = SerializeCommonHeader(m);
         sb.Append(m.ContactId);
         sb.Append(FieldSeparator);
-        sb.Append(m.DeleteMode.ToWireString());
+        sb.Append(m.DeleteFlag.ToWireString());
         sb.Append(FieldSeparator);
         AppendOptionalDouble(sb, m.Latitude);
         sb.Append(FieldSeparator);
@@ -969,7 +969,7 @@ public sealed class MessageSerializer : IMessageSerializer
             Acknowledgement: header.Acknowledgement,
             Mac: header.Mac,
             EmissionId: emissionId,
-            DeleteMode: deleteMode,
+            DeleteFlag: deleteMode,
             SensorLatitude: sensorLat,
             SensorLongitude: sensorLon,
             SensorAltitude: sensorAlt,
@@ -994,7 +994,7 @@ public sealed class MessageSerializer : IMessageSerializer
         StringBuilder sb = SerializeCommonHeader(m);
         sb.Append(m.EmissionId);
         sb.Append(FieldSeparator);
-        sb.Append(m.DeleteMode.ToWireString());
+        sb.Append(m.DeleteFlag.ToWireString());
         sb.Append(FieldSeparator);
         AppendOptionalDouble(sb, m.SensorLatitude);
         sb.Append(FieldSeparator);

@@ -12,7 +12,7 @@ namespace Bundeswehr.Uniity.SEDAPExpress.Messages;
 /// <param name="Acknowledgement"><inheritdoc/></param>
 /// <param name="Mac"><inheritdoc/></param>
 /// <param name="EmissionId">Emission identifier.</param>
-/// <param name="DeleteMode">Delete flag.</param>
+/// <param name="DeleteFlag">Delete flag.</param>
 /// <param name="SensorLatitude">Sensor latitude in degrees.</param>
 /// <param name="SensorLongitude">Sensor longitude in degrees.</param>
 /// <param name="SensorAltitude">Sensor altitude in meters.</param>
@@ -37,7 +37,7 @@ public sealed record class EmissionMessage(
     Acknowledgement Acknowledgement,
     string? Mac,
     string EmissionId,
-    DeleteMode DeleteMode,
+    DeleteMode DeleteFlag,
     double? SensorLatitude,
     double? SensorLongitude,
     double? SensorAltitude,
